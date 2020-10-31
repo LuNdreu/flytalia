@@ -594,7 +594,7 @@ contract MYToken is ERC20, Ownable {
     string private constant _VERSION = "v1.0";
     string private constant _INSTRUCTIONS = "Visit https://github.com/LuNdreu/flytalia/blob/main/token/fly-token.md for Token Details";
     // indicates if minting is finished
-    uint256 private cap = 100;
+    uint256 private cap = 3200000;
     uint256 private new_cap = cap;
     
     constructor(
