@@ -6,6 +6,39 @@ FLYToken is a ERC20 Token deployed on Ethereum network.
 Hereby the main characteristics:
 * Initial supply = 1.000.000 FLYs
 * Cap = 3.200.000 FLYs
+* Mintable
+* Burnable 
+* ERC20 compliant (approve issue solved with allowance)
+* Circulating supply visible
 
 
-## Work in Progress
+## Intro
+### Why an ERC20 Token for Flytalia
+
+The reason I decided to deploy such a token is simple. To reward users who decide to share their photos and mostly the location where they took the shoot.
+Rewarding by fiat currency would have been an option, but not the best one in my opinion. 
+For many reasons I won't be listing here. If you are interested of course we can have a discussion.
+
+Therefore, since we are living the blockchain technology era, I decided to create FLYTokens.
+
+Users who share photos on this platform are passionate about looking for hidden beautiful places in order to shoot an amazing photo. By means on FLYTokens they will be able to get more of these amazing shoots, taken by other users whith which they share the same passion.
+
+### How has been set Initial supply, Cap and Distribution
+
+Since I wanted to have a cheap contract to deploy on Ethereum, I tried to keep the code as simple as possible, still being ERC20 compliant and eventually tradable in future.
+Token cap has been set considering an average of 8000 hurban centers in Italy, and assuming that ideally there would be 10 photos for each one. 
+I know it's not a lot but this is a kind of stimulus to really find the best places around.
+Ideally photos will be with 4k resolution (4096x2160).
+
+For the moment the distribution criteria is very basic and probably full of issues. In the future I will try to come up with something more sophisticated but for the moment FLYs will be tested on mainnet as they are.
+I decided to distribute FLYs depending on the photo resolution.
+Basically users will get as many FLYs as the figures of the resolution of the photo they provide, first 2 digits excluded (below some examples)
+- 500×480 : 5 FLYs
+- 720×480 : 7 FLYs
+- 1280×720 : 12 FLYs
+- 1920×1080 : 19 FLYs
+- 2048×1080 : 20 FLYs
+- 4096×2160 : 40 FLYs
+
+Considered what said above then, it is clear how I fixed the cap (8000 x 10 x 40).
+Initial supply instead has been selected considering the amount of photos I am currently processing and their resolution.
