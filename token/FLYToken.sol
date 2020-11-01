@@ -61,22 +61,6 @@ interface IERC20 {
     function allowance(address owner, address spender) external view returns (uint256);
 
     /**
-     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * IMPORTANT: Beware that changing an allowance with this method brings the risk
-     * that someone may use both the old and the new allowance by unfortunate
-     * transaction ordering. One possible solution to mitigate this race
-     * condition is to first reduce the spender's allowance to 0 and set the
-     * desired value afterwards:
-     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-     *
-     * Emits an {Approval} event.
-     */
-    function approve(address spender, uint256 amount) external returns (bool);
-
-    /**
      * @dev Emitted when `value` tokens are moved from one account (`from`) to
      * another (`to`).
      *
@@ -372,18 +356,6 @@ contract ERC20 is Context, IERC20 {
         return _allowances[owner][spender];
     }
 
-    /**
-     * @dev See {IERC20-approve}.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        _approve(_msgSender(), spender, amount);
-        return true;
-    }
-
 
     /**
      * @dev Atomically increases the allowance granted to `spender` by the caller.
@@ -464,6 +436,28 @@ contract ERC20 is Context, IERC20 {
         _balances[account] = _balances[account].add(amount);
         emit Transfer(address(0), account, amount);
     }
+
+    /**
+     * @dev Destroys `amount` tokens from `account`, reducing the
+     * total supply.
+     *
+     * Emits a {Transfer} event with `to` set to the zero address.
+     *
+     * Requirements:
+     *
+     * - `account` cannot be the zero address.
+     * - `account` must have at least `amount` tokens.
+     */
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
+
+        _beforeTokenTransfer(account, address(0), amount);
+
+        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
+        _totalSupply = _totalSupply.sub(amount);
+        emit Transfer(account, address(0), amount);
+    }
+
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
@@ -585,15 +579,12 @@ contract Ownable is Context {
  * @dev Developed by Andrea Piccinno @ flytalia.com
  * @dev Constructor will create an initial supply of tokens with a name and a symbol
  * @dev to the address which deploys the contract
- * @dev If initialSupply indicated is bigger than desired cap, the max cap will be minted.
  */
 pragma solidity ^0.7.0;
-contract MYToken is ERC20, Ownable {
+contract FLYToken is ERC20, Ownable {
 
-    string private constant _CREATOR = "Andrea @ Flytalia";
-    string private constant _VERSION = "v1.0";
-    string private constant _INSTRUCTIONS = "Visit https://github.com/LuNdreu/flytalia/blob/main/token/fly-token.md for Token Details";
-    // indicates if minting is finished
+    string private constant _tokenCreator = "Andrea @ Flytalia";
+    string private constant _release = "v1.0";
     uint256 private cap = 3200000;
     uint256 private new_cap = cap;
     
@@ -625,21 +616,14 @@ contract MYToken is ERC20, Ownable {
      * @dev Returns the token generator.
      */
     function creator() public pure returns (string memory) {
-    return _CREATOR;
+    return _tokenCreator;
     }
 
      /**
      * @dev Returns the token generator version.
      */
     function version() public pure returns (string memory) {
-    return _VERSION;
-    }
-  
-    /**
-    * @dev Returns the token generator version.
-    */
-    function instructions() public pure returns (string memory) {
-    return _INSTRUCTIONS;
+    return _release;
     }
   
      /**
@@ -653,10 +637,20 @@ contract MYToken is ERC20, Ownable {
     } 
      
      /**
-     * @dev See residual mintable tokens before cap.
+     * @dev Returns residual mintable tokens before cap.
      */
     function residualToCap() public view returns (uint256) {
         return new_cap;
+    }
+    
+     /**
+     * @dev Destroys `amount` tokens from the caller.
+     *
+     * See {ERC20-_burn}.
+     */
+    function burn(uint256 amount) public virtual onlyOwner {
+        _burn(owner(), amount);
+        new_cap = new_cap + amount;
     }
     
 }
