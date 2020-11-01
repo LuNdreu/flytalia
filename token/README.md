@@ -1,7 +1,7 @@
-# FLYToken
+# FLYToken (FLY)
 
 ## Abstract
-Following document will report a detailed description about the flytalia.com native token FLYToken.
+Following document will report a detailed description about the flytalia.com native token FLYToken (FLY).
 FLYToken is a ERC20 Token deployed on Ethereum network.
 Hereby the main characteristics:
 * Initial supply = 1.000.000 FLYs
@@ -42,3 +42,17 @@ Basically users will get as many FLYs as the figures of the resolution of the ph
 
 Considered what said above then, it is clear how I fixed the cap (8000 x 10 x 40).
 Initial supply instead has been selected considering the amount of photos I am currently processing and their resolution.
+
+### How can FLYs be used
+
+For the moment, basically FLYs can be used just to get high quality photos from this platform.
+Users can still decide to pay for photos with fiat. But they will be given the chance to use FLYs too.
+Low resolution preview of the photos and their location instead is free and available on "Discover" page at flytalia.com.
+
+When requestion high quality photos, currently users will need to request a quotation to myself.
+I am working in implementing this exchange through smart contract in order to make transactions more efficient and safe.
+
+At the moment anyway everything is work in progress so I will keep it the old way.
+
+Later one I am planning to list FLYs on Uniswap by providing liquidity with the income of this platform.
+So if you want to support this, your tips will be welcome. Remember flytalia.com is Brave verified and you can tip some BATs if you are using Brave Browser.
