@@ -56,3 +56,11 @@ At the moment anyway everything is work in progress so I will keep it the old wa
 
 Later one I am planning to list FLYs on Uniswap by providing liquidity with the income of this platform.
 So if you want to support this, your tips will be welcome. Remember flytalia.com is Brave verified and you can tip some BATs if you are using Brave Browser.
+
+### Why did I create FLYs and FLYtalia
+
+Mostly I did it for fun, in order to create a full project from the idea, to a live website/platform managed through smart contracts on Ethereum.
+Also it is a way to make people find out places they didn't even imagine they could exist in my country.
+So if you are planning your next trip and you have no idea where to start from, let your eyes decide for you. Visit flytalia.com and choose.
+
+And don't forget to share your photos once you are back and get rewarded with FLYs!
