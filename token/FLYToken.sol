@@ -773,9 +773,10 @@ contract Ownable is Context {
 
 
 /**
- * @dev Developed by Andrea Piccinno @ flytalia.com
+ * @dev Code developed by Andrea @ flytalia.com
  * @dev Constructor will create an initial supply of tokens with a name and a symbol
  * @dev to the address which deploys the contract
+ * @dev If the initialSupply is bigger than the cap indicated, then the cap is distributed as initialSupply
  */
 pragma solidity ^0.7.0;
 contract FLYToken is ERC20, Ownable {
